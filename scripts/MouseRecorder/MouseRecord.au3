@@ -8,14 +8,16 @@
 Main()
 
 Func Main()
-    
+    Local $VerifQuit
     GUI_InitialiserBoutons($GUI_Boutons , $GUI_TailleBoutons)
     Local $NomProg = GUI_DemanderNomAp("Debug")
     PROG_VerifMsgQuit($NomProg)
-    Local $NomFenetre = GUI_DemanderNomFenetre("Debgu")
+    Local $NomFenetre = GUI_DemanderNomFenetre("Debug")
     PROG_VerifMsgQuit($NomProg)
-    
-    Exit(1)
+    GUI_IsolerFenetre()
+    $VerifQuit = PROG_LancerProgramme($NomProg , $NomFenetre , "Dbug")
+    PROG_VerifMsgQuit($VerifQuit)
+
     GUISetState(@SW_SHOW , $GUI_Fenetre)
     While True
         If GUIGetMsg() = $GUI_EVENT_CLOSE Then

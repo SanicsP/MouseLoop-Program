@@ -38,3 +38,10 @@ Func VERIF_VerifAp(Const $NomFichier)
 
     Return 0
 EndFunc
+
+Func VERIF_VerifFenetre($NomFenetre)
+    If WinExists($NomFenetre) = 0 Then 
+        Return 0
+    EndIf
+    Return 1
+EndFunc

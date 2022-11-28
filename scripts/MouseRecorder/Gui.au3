@@ -69,7 +69,7 @@ Func GUI_DemanderNomAp($nomAp = "message")
         EndSwitch
     WEnd
     Return $NomSaisi 
-    
+
 EndFunc
 
 Func GUI_DemanderNomFenetre($nomAp)
@@ -78,13 +78,16 @@ Func GUI_DemanderNomFenetre($nomAp)
     Local $IdBouton 
     
     While $EntreeValide = False 
+
         $NomSaisi = InputBox($nomAp , "Entrez le nom de la fenêtre à éxecuter")
+
         If @error = 1 Then
             $IdBouton = MsgBox(4 , $nomAp , "Voulez vous quitter le programme ?")
             If $IdBouton = $IDYES Then
                 return 0
             EndIf
         EndIf
+        $EntreeValide = True 
     WEnd
 
     Return $NomSaisi
