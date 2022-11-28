@@ -9,8 +9,14 @@ Main()
 
 Func Main()
     
-    GUISetState(@SW_SHOW , $GUI_Fenetre)
     GUI_InitialiserBoutons($GUI_Boutons , $GUI_TailleBoutons)
+    Local $NomProg = GUI_DemanderNomAp("Debug")
+    PROG_VerifMsgQuit($NomProg)
+    Local $NomFenetre = GUI_DemanderNomFenetre("Debgu")
+    PROG_VerifMsgQuit($NomProg)
+    
+    Exit(1)
+    GUISetState(@SW_SHOW , $GUI_Fenetre)
     While True
         If GUIGetMsg() = $GUI_EVENT_CLOSE Then
             MsgBox(0 , "message" , "arrêt du programme")
