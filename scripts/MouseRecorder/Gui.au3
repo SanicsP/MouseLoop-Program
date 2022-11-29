@@ -2,6 +2,8 @@
 #include <GuiConstants.au3>
 #include <Verif.au3>
 #include <MsgBoxConstants.au3>
+#include <AutoitConstants.au3>
+#include <ColorConstants.au3>
 
 Global $GUI_NonFenetre = "Test"
 Global $GUI_TailleFenetre[2] = [400 , 400]
@@ -97,3 +99,29 @@ EndFunc
 Func GUI_IsolerFenetre() 
     WinMinimizeAll()
 EndFunc
+
+Func GUI_PlacerBoutons($tailleFenetre , Byref $TBoutons )
+    
+    ;Initialisation des fenêtres
+
+    $Tboutons[0] = GUICtrlCreateButton("Nb enregistrement" , 0 ,0 , $tailleFenetre[0]/2 , 100)
+    $Tboutons[1] = GUICtrlCreateButton("Drag" , 0  , 100 , $tailleFenetre[0]/2 , 100)
+    $Tboutons[2] = GUICtrlCreateButton("Drop" , 0  , 200 , $tailleFenetre[0]/2 , 100)
+    $Tboutons[3] = GUICtrlCreateButton("Annuler" , 0  , 300 , $tailleFenetre[0]/2 , 100)
+    $Tboutons[4] = GUICtrlCreateButton("Recommencer" , $tailleFenetre[0]/2  , 0 , $tailleFenetre[0]/2 , 100)
+    $Tboutons[5] = GUICtrlCreateButton("Enregistrement Clic" , $tailleFenetre[0]/2  , 100 , $tailleFenetre[0]/2 , 200)
+    $Tboutons[6] = GUICtrlCreateButton("Enregistrer la séquence" , $tailleFenetre[0]/2  , 300 , $tailleFenetre[0]/2 , 100)
+
+EndFunc
+
+Func GUI_ColorerBoutons(Byref $TBoutons , $handleFenetre)
+
+    GUICtrlSetBkColor($Tboutons[0] , 0x81d41a)
+    GUICtrlSetBkColor($Tboutons[1] , 0xff860d)
+    GUICtrlSetBkColor($Tboutons[2] , 0xffe994)
+    GUICtrlSetBkColor($Tboutons[3] , 0xff0000)
+    GUICtrlSetBkColor($Tboutons[4] , 0xe16173)
+    GUICtrlSetBkColor($Tboutons[5] , 0xffbf00)
+    GUICtrlSetBkColor($Tboutons[6] , 0x800080)
+
+EndFunc 
