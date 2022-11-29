@@ -52,3 +52,15 @@ Func VERIF_verifFenetreActive($NomFenetre)
         return 0 
     EndIf
 EndFunc
+
+Func VERIF_verifDelais($delais)
+    
+    Select 
+        Case  $delais = 0
+            Return 0
+        Case $delais < 0 
+            Return 0
+    EndSelect
+
+    Return 1 
+EndFunc

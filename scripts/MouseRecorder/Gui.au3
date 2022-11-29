@@ -125,3 +125,43 @@ Func GUI_ColorerBoutons(Byref $TBoutons , $handleFenetre)
     GUICtrlSetBkColor($Tboutons[6] , 0x800080)
 
 EndFunc 
+
+Func GUI_ActualiserGui()
+
+EndFunc
+
+Func GUI_DemanderDelais($NomAp) ; En cours de modificaton
+    Local $EntreeValide = False
+    Local $delais = 0
+    Local $retour = 0
+    
+    While $EntreeValide = False 
+       
+        $delais = InputBox($nomAp , "indiquez le delais d'attente pour le prochain clic")
+        Local $ErrInput = @error
+        $delais = INT($delais)
+    
+        If $ErrInput = 1 Then
+            
+             $retour = MsgBox(4 , $nomAp , "Voulez vous annuler votre clic ?") 
+            
+            Switch $retour
+                case $IDYES
+                    MsgBox(0 , $nomAp , "Vous avez annulé lenregistrement du clic , il ne sera pas enregistré")
+                    Return 0
+                case $IDNO
+                    MsgBox(0 , $nomAp , "resaisisez le délais , votre clic n'a pas été annulé")
+                    ContinueLoop
+            EndSwitch
+
+        ElseIf VERIF_verifDelais($delais) = 0 Then
+            MsgBox(0 , $nomAp , "Votre saisie est incorrecte") 
+            ContinueLoop
+        EndIf
+        
+        $EntreeValide = True
+        
+    WEnd
+
+    Return $delais
+EndFunc

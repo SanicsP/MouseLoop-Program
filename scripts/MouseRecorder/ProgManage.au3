@@ -4,6 +4,7 @@
 
 Func PROG_VerifMsgQuit($retour)
     If IsArray($retour) = 0 and IsString($retour) = 0 and $retour = 0 Then 
+    MsgBox(0 , "Quit" , "Arrêt du script")
         Exit(1)
     EndIf
 Endfunc
