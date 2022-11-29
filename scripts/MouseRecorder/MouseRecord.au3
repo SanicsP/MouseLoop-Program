@@ -4,6 +4,7 @@
 #include "ProgManage.au3"
 #include <AutoitConstants.au3>
 
+AutoItSetOption("MouseCoordMode" , 2)
 
 Main()
 

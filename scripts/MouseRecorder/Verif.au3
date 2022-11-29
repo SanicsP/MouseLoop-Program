@@ -1,5 +1,6 @@
 #include-once 
 #include <StringConstants.au3>
+#include <AutoitConstants.au3>
 
 
 Func VERIF_VerifAp(Const $NomFichier)
@@ -39,9 +40,15 @@ Func VERIF_VerifAp(Const $NomFichier)
     Return 0
 EndFunc
 
-Func VERIF_VerifFenetre($NomFenetre)
+Func VERIF_VerifFenetreExiste($NomFenetre)
     If WinExists($NomFenetre) = 0 Then 
         Return 0
     EndIf
     Return 1
+EndFunc
+
+Func VERIF_verifFenetreActive($NomFenetre)
+    If WinActive($NomFenetre) = 0 Then
+        return 0 
+    EndIf
 EndFunc

@@ -17,7 +17,7 @@ Func PROG_LancerProgramme($NomProg , $NomFenetre , $nomP)
     
     While $EntreeValide = False 
 
-    If VERIF_VerifFenetre($nvNomFenetre) = 0 Then
+    If VERIF_VerifFenetreExiste($nvNomFenetre) = 0 Then
 
         Local $IdBouton = MsgBox(4 , $nomP ,"La fenetre que vous avez spécifié n'existe pas. Voulez vous la resaisir?")
         
