@@ -99,10 +99,10 @@ Func VERIF_VerifRepertoirExiste($Rep)
         EndIf
     Next
     If FileExists($chemin) = 1 Then
-        MsgBox(0 , "DEBUG verif" , $chemin & " Existe")
+        MsgBox(0 , "Erreur" , $chemin & " Existe")
         Return 1
     Else
-        MsgBox(0 , "DEBUG verif" , $chemin & " N'existe pas")
+        MsgBox(0 , "Erreur" , $chemin & " N'existe pas")
         Return 0
     EndIf
     
@@ -112,4 +112,11 @@ Func SeparerChemin($chemin)
     Local $Div = StringSplit($chemin , "/" , $STR_NOCOUNT)
     Local $DivB = UBound($Div)
     Return $Div[$DivB - 1]
+EndFunc
+
+Func VERIF_VerifNbIteration($NbIteration) 
+    If $NbIteration <= 0 Then
+        Return 0 
+    EndIf
+    Return 1 
 EndFunc

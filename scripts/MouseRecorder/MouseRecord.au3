@@ -48,12 +48,15 @@ Func Main()
         SEC_EnregistreMentClics($NomFenetre , $FR_TableauInsructions)
 
         ;Partie dediée à la modification du tableau d'instrcutions : effacer le tableau , enlever un clic
-        Local $RetourSEC = SEC_ModficationTableauInstructions($FR_TableauInsructions , $GUI_Boutons)        
-        
-        If $RetourSEC = 1 Then 
+        Local $RetourSecModif = SEC_ModficationTableauInstructions($FR_TableauInsructions , $GUI_Boutons)        
+        Local $RetourSecENS = 0
+        If $RetourSecModif = 1 Then 
             MsgBox(0 , "DEBUG" , "Enregistrement")
-            SEC_EnregistrementDansFichier($FR_TableauInsructions)
-            $RetourSEC = 0
+            $RetourSecENS = SEC_EnregistrementDansFichier($FR_TableauInsructions , $NomProg)
+            If $RetourSecENS = 0 Then 
+                
+            EndIf
+            $RetourSecModif = 0
         EndIf
 
         PROG_VerifMsgQuit($VerifQuit)

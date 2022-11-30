@@ -295,12 +295,38 @@ Func GUI_DemanderNomFichier($nomAp)
         $EntreeValide = 1
     WEnd
     
-    Local $Fichier = FileOpen($Entree , $FO_OVERWRITE)
+    Local $Fichier = FileOpen($Entree & ".ml" , $FO_OVERWRITE)
     
     If $Fichier = -1 Then 
         MsgBox(0 , $nomAp , "Erreur Le fichier n'as pas pu s'ouvir")
         return 0
     EndIf
 
-    Return $Fichier
+    Return $Fichier 
 EndFunc
+
+Func GUI_DemanderNbIterations($nomAp)
+    Local $EntreeValide = 0 
+    Local $NbIteration = 0 
+    
+    While $EntreeValide = 0
+        $NbIteration = InputBox($nomAp , "Combien de fois voulez vous que le scripte s'execute ? ")
+        
+        If @error = 1 Then
+            Local $Retour = MsgBox(4 , "Itérations" , "Voulez vous annuler la sauvegarde ?")
+            Switch $Retour 
+                Case $IDYES 
+                    Return 0 
+                Case $IDNO
+                    ContinueLoop
+            EndSwitch
+        EndIf
+
+        If VERIF_VerifNbIteration($NbIteration) = 0 Then 
+            MsgBox(48 , "Erreur" , "L'entrée n'est pas valide")
+            ContinueLoop
+        EndIf 
+        $EntreeValide = 1
+    Wend
+    Return $NbIteration
+EndFunc 
