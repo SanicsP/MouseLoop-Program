@@ -84,3 +84,32 @@ Func VERIF_verifDelais($delais)
 
     Return 1 
 EndFunc
+
+Func VERIF_VerifRepertoirExiste($Rep)
+    Local $str = StringSplit($Rep , "/" , $STR_NOCOUNT)
+    Local $strB = UBound($str)
+    Local $chemin = "" 
+
+    For $i = 0 To $strB - 2 Step 1
+       $chemin = $chemin & $str[$i]
+        If $i = $strB - 2 Then
+            ExitLoop
+        Else
+            $chemin = $chemin & "/"
+        EndIf
+    Next
+    If FileExists($chemin) = 1 Then
+        MsgBox(0 , "DEBUG verif" , $chemin & " Existe")
+        Return 1
+    Else
+        MsgBox(0 , "DEBUG verif" , $chemin & " N'existe pas")
+        Return 0
+    EndIf
+    
+EndFunc
+
+Func SeparerChemin($chemin) 
+    Local $Div = StringSplit($chemin , "/" , $STR_NOCOUNT)
+    Local $DivB = UBound($Div)
+    Return $Div[$DivB - 1]
+EndFunc

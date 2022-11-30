@@ -53,6 +53,32 @@ Func SEC_ModficationTableauInstructions(Byref $TableauInstructions , Const ByRef
     Return 0
 EndFunc
 
-Func SEC_EnregistrementDansFichier()
+Func SEC_EnregistrementDansFichier(Byref $TableauInstructions , $NomProg , $NbIteration)
     
+    $Fichier = GUI_DemanderNomFichier("Sauvegarde")
+    If $Fichier = 0 Then 
+        MsgBox(48 , "Erreur" , "Le fichier n'a pas pu être sauvegardé")
+        Return 1
+    EndIf
+    FileWriteLine($Fichier , $NomProg)
+    
+    FileWriteLine($Fichier , $NbIteration)
+    
+    $Taille = UBound($TableauInstructions) 
+    
+    For $i = 0 To $Taille - 1 Step 1 
+        FileWriteLine($Fichier , $TableauInstructions[$i])
+    Next 
+
+    FileClose($Fichier) 
+    
+    Local $retourMsg = MsgBox(4 , "Sauvegarde" , "Votre fichier a été sauvegardé avec succès. Voulez vous continuer ?")
+
+    Switch $retourMsg 
+        case $IDYES
+            Return 1
+        case $IDNO
+            Return 0
+    EndSwitch 
+
 EndFunc

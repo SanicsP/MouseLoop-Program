@@ -12,7 +12,7 @@ AutoItSetOption("MouseCoordMode" , 2)
 Main()
 
 Func Main()
-    
+
     $FocusFenetre = 0
     Local $VerifQuit
     Local $NomProg = GUI_DemanderNomAp("Debug")
@@ -46,9 +46,15 @@ Func Main()
         
         ;Partie dediée à l'enregistrement des clics et des glisser déposer de la souris
         SEC_EnregistreMentClics($NomFenetre , $FR_TableauInsructions)
-        
+
         ;Partie dediée à la modification du tableau d'instrcutions : effacer le tableau , enlever un clic
-        SEC_ModficationTableauInstructions($FR_TableauInsructions , $GUI_Boutons)        
+        Local $RetourSEC = SEC_ModficationTableauInstructions($FR_TableauInsructions , $GUI_Boutons)        
+        
+        If $RetourSEC = 1 Then 
+            MsgBox(0 , "DEBUG" , "Enregistrement")
+            SEC_EnregistrementDansFichier($FR_TableauInsructions)
+            $RetourSEC = 0
+        EndIf
 
         PROG_VerifMsgQuit($VerifQuit)
     WEnd

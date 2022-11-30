@@ -4,6 +4,7 @@
 #include <MsgBoxConstants.au3>
 #include <AutoitConstants.au3>
 #include <ColorConstants.au3>
+#include <FileConstants.au3>
 
 Global $GUI_NonFenetre = "Test"
 Global $GUI_TailleFenetre[2] = [400 , 400]
@@ -266,4 +267,40 @@ Func GUI_DesactiverTouches()
     HotKeySet("d")
     HotKeySet("f")
     HotKeySet("c")
+EndFunc
+
+Func GUI_DemanderNomFichier($nomAp) 
+    $EntreeValide = 0
+    $Entree = ""
+
+    While $EntreeValide = 0
+        $Entree = InputBox($nomAp , "Saisez le nom du fichier et spécifiez le chemin absolu")
+        IF @error = 1 Then
+            Local $EntreMsgBox = MsgBox(4 , $nomAp , "Voulez vous annuler la sauvegarde ?")
+            
+            Switch $EntreMsgBox
+                
+                case $IDYES
+                    MsgBox(0 , $nomAp , "Le fichier ne sera pas Sauvegardé")
+                    Return 0
+                case $IDNO
+                    ContinueLoop 
+            EndSwitch
+        EndIf
+
+        IF VERIF_VerifRepertoirExiste($Entree) = 0 Then 
+            MsgBox(0 , $nomAp , "Le Repertoir spécifié n'existe pas")
+            ContinueLoop
+        EndIf
+        $EntreeValide = 1
+    WEnd
+    
+    Local $Fichier = FileOpen($Entree , $FO_OVERWRITE)
+    
+    If $Fichier = -1 Then 
+        MsgBox(0 , $nomAp , "Erreur Le fichier n'as pas pu s'ouvir")
+        return 0
+    EndIf
+
+    Return $Fichier
 EndFunc
