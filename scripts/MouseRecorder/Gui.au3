@@ -22,6 +22,11 @@ $GUI_F_Touch = 0
     fonctions     
 #ce ##################################################################################################################
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_InitialiserBoutons(Byref $Aboutons , $AtailleBouton)
 
         $Aboutons[0] = GUICtrlCreateButton("Init+0" , -1 , -1 , $AtailleBouton[0] , $AtailleBouton[1])
@@ -37,6 +42,11 @@ EndFunc
 
 
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_DemanderNomAp($nomAp = "message")
 
     Local $NomSaisi 
@@ -79,6 +89,11 @@ Func GUI_DemanderNomAp($nomAp = "message")
 
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_DemanderNomFenetre($nomAp)
     Local $EntreeValide = False
     Local $NomSaisi = False 
@@ -101,10 +116,20 @@ Func GUI_DemanderNomFenetre($nomAp)
 
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_IsolerFenetre() 
     WinMinimizeAll()
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_PlacerBoutons($tailleFenetre , Byref $TBoutons )
     
     ;Initialisation des fenêtres
@@ -119,6 +144,11 @@ Func GUI_PlacerBoutons($tailleFenetre , Byref $TBoutons )
 
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_ColorerBoutons(Byref $TBoutons , $handleFenetre)
 
     GUICtrlSetBkColor($Tboutons[0] , 0x81d41a)
@@ -131,10 +161,16 @@ Func GUI_ColorerBoutons(Byref $TBoutons , $handleFenetre)
 
 EndFunc 
 
+
 Func GUI_ActualiserGui()
 
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_DemanderDelais($NomAp) ; En cours de modificaton
     Local $EntreeValide = False
     Local $delais = 0
@@ -171,6 +207,11 @@ Func GUI_DemanderDelais($NomAp) ; En cours de modificaton
     Return $delais
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_D_presse()
     If $GUI_D_Touch = 0 Then
         $GUI_D_Touch = 1
@@ -179,6 +220,11 @@ Func GUI_D_presse()
     EndIf
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_C_presse()
     If $GUI_C_Touch = 0 Then
         $GUI_C_Touch = 1
@@ -187,6 +233,11 @@ Func GUI_C_presse()
     EndIf
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_F_presse()
     If $GUI_F_Touch = 0 Then
         $GUI_F_Touch = 1
@@ -195,12 +246,22 @@ Func GUI_F_presse()
     EndIf
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_ActiverTouches() 
      HotKeySet("d" , "GUI_D_presse")
     HotKeySet("f" , "GUI_F_presse")
     HotKeySet("c" , "GUI_C_presse")
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func GUI_DesactiverTouches() 
     HotKeySet("d")
     HotKeySet("f")

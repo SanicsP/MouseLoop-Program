@@ -3,6 +3,11 @@
 #include <AutoitConstants.au3>
 
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func VERIF_VerifAp(Const $NomFichier)
     
     Local $Div = StringSplit($NomFichier , "\", $STR_NOCOUNT)
@@ -40,6 +45,11 @@ Func VERIF_VerifAp(Const $NomFichier)
     Return 0
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func VERIF_VerifFenetreExiste($NomFenetre)
     If WinExists($NomFenetre) = 0 Then 
         Return 0
@@ -47,12 +57,22 @@ Func VERIF_VerifFenetreExiste($NomFenetre)
     Return 1
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func VERIF_verifFenetreActive($NomFenetre)
     If WinActive($NomFenetre) = 0 Then
         return 0 
     EndIf
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func VERIF_verifDelais($delais)
     
     Select 

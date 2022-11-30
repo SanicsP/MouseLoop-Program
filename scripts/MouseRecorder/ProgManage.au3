@@ -2,6 +2,11 @@
 #include "Gui.au3"
 #include "Verif.au3"
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func PROG_VerifMsgQuit($retour)
     If IsArray($retour) = 0 and IsString($retour) = 0 and $retour = 0 Then 
     MsgBox(0 , "Quit" , "Arrêt du script")
@@ -9,6 +14,11 @@ Func PROG_VerifMsgQuit($retour)
     EndIf
 Endfunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func PROG_LancerProgramme($NomProg , $NomFenetre , $nomP)
     
     Local $nvNomFenetre = $NomFenetre

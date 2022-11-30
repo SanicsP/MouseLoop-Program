@@ -6,6 +6,11 @@ Global $ENS_PosDrag
 Global $ENS_PosDrop
 Global $ENS_Drag = 0
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func ENS_AnnulerDerniereAction(ByRef $Tab)
     _ArrayPop($Tab)
     If @error = 3 Then
@@ -14,7 +19,11 @@ Func ENS_AnnulerDerniereAction(ByRef $Tab)
     EndIf
 EndFunc
 
-
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func ENS_EnregistrerPosSouris($NomFenetre) ; en cours de modifications 
     Local $pos = MouseGetPos()
         
@@ -37,7 +46,11 @@ Func ENS_EnregistrerPosSouris($NomFenetre) ; en cours de modifications
 
 EndFunc
 
-
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func ENS_ActiverDrag() ; S'enclenche lorsque l'utilisateur appui sur D
 
     If $ENS_Drag = 0 Then
@@ -51,6 +64,11 @@ Func ENS_ActiverDrag() ; S'enclenche lorsque l'utilisateur appui sur D
     GUI_D_presse()
 EndFunc
 
+#cs 
+    @brief
+    @param 
+    @return 
+#ce 
 Func ENS_ActiverDrop() ;; S'enclenche lorsque l'utilisateur appui sur F
     If $ENS_Drag = 1 Then
         $ENS_Drag = 0
