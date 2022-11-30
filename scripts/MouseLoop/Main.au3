@@ -29,7 +29,7 @@ Local $NomProgramme = "Mouse Loop"
 	OuvrirAp($Tableau_Instruction[0] , $NomFenetre , $initPos , 4e3)
 
 	;éxecution de la boucle d'actions 
-	BoucleInstruction($Tableau_Instruction , $Tableau_Instruction[1] , 10)
+	BoucleInstruction($Tableau_Instruction , $Tableau_Instruction[1] ,  10 )
 	
 	;fermeture de l'application 
 	FermerAp($NomProgramme)

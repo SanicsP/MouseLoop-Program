@@ -3,7 +3,7 @@
 #include "Gui.au3"
 #include "ProgManage.au3"
 #include <AutoitConstants.au3>
-
+#include <Debug.au3>
 AutoItSetOption("MouseCoordMode" , 2)
 
 
@@ -35,10 +35,12 @@ Func Main()
 
         If GUIGetMsg() = $GUI_EVENT_CLOSE Then
             MsgBox(0 , "message" , "arrêt du programme")
+            _DebugArrayDisplay($FR_TableauInsructions)
             Exit(1)
         EndIf
         
         $FocusFenetre = VERIF_verifFenetreActive($NomFenetre)
+        
         #cs
             //////////////////////////////////////////////////////////////////////////
             Gestion des évenneements utilisateur  
@@ -46,12 +48,34 @@ Func Main()
         #ce
 
         Select 
+
             case $GUI_C_Touch = 1  
-                $VerifQuit = ENS_EnregistrerPosSouris($NomFenetre)
+                GUI_DesactiverTouches()
+                Local $InstructionClic = ENS_EnregistrerPosSouris($NomFenetre)
+                
+                If $InstructionClic <> 0 Then
+                    FR_AjouterInstruction($FR_TableauInsructions , $InstructionClic)
+                Else
+                    MsgBox(0 , "Debug" , "Le clic n'a pas pu être enregistré")
+                EndIf
+                GUI_ActiverTouches()
             case $GUI_D_Touch = 1
+                GUI_DesactiverTouches()
+                
                 ENS_ActiverDrag()
+
+                GUI_ActiverTouches()
             case $GUI_F_Touch = 1
-                ENS_ActiverDrop()
+                GUI_DesactiverTouches()
+                Local $InstructionDragDrop = ENS_ActiverDrop()
+
+                If $InstructionDragDrop <> 0 Then
+                    FR_AjouterInstruction($FR_TableauInsructions , $InstructionDragDrop)
+                Else
+                    MsgBox(0 , "Debug" , "Le DragDrop n'a pas pu être enregistré")
+                EndIf
+                GUI_ActiverTouches()
+                
         EndSelect
 
         PROG_VerifMsgQuit($VerifQuit)
