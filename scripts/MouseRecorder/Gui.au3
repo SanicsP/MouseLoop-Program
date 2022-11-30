@@ -24,9 +24,9 @@ $GUI_F_Touch = 0
 #ce ##################################################################################################################
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Place les boutons dans la fenêtre du Script
+    @param $Abotons Tableau contenant l'identifiant des contrôles de la fenêtre 
+    @return Aucune valeur 
 #ce 
 Func GUI_InitialiserBoutons(Byref $Aboutons , $AtailleBouton)
 
@@ -44,9 +44,9 @@ EndFunc
 
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Demande une saisi utilisateur pour le nom du programme 
+    @param $nomAp Le nom du script 
+    @return Le nom valide saisi pas l'utilisateur , 0 si l'utilisateur souhaite arrêter l'execution du script
 #ce 
 Func GUI_DemanderNomAp($nomAp = "message")
 
@@ -91,9 +91,10 @@ Func GUI_DemanderNomAp($nomAp = "message")
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Demande ube saisi utilisateur pour le nom de la fenêtre qui recevera le focus et sur laquelle 
+    la séquence de clics s'enregistrer 
+    @param $nomAp Le nom du script 
+    @return Le nom valide de la fenêtre , 0 si l'utilisateur souhaite arrêter le script 
 #ce 
 Func GUI_DemanderNomFenetre($nomAp)
     Local $EntreeValide = False
@@ -118,18 +119,19 @@ Func GUI_DemanderNomFenetre($nomAp)
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Réduit toute les fenêtres du bureau
+    @param rien
+    @return aucune valeur 
 #ce 
 Func GUI_IsolerFenetre() 
     WinMinimizeAll()
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Place les boutons dans différents endroits de la fenêtre du script 
+    @param $TailleFentre La taille de la fenêtre sous forme de tableau [Largeur , Hauteur]
+    @param $TBoutons Tableau contenant les identifiants des contrôles des boutons 
+    @return Aucune valeur 
 #ce 
 Func GUI_PlacerBoutons($tailleFenetre , Byref $TBoutons )
     
@@ -146,9 +148,9 @@ Func GUI_PlacerBoutons($tailleFenetre , Byref $TBoutons )
 EndFunc
 
 #cs 
-    @brief
+    @brief Colorie les Boutons de la fenêtre du script 
     @param 
-    @return 
+    @return Aucune Valeur 
 #ce 
 Func GUI_ColorerBoutons(Byref $TBoutons , $handleFenetre)
 
@@ -163,14 +165,12 @@ Func GUI_ColorerBoutons(Byref $TBoutons , $handleFenetre)
 EndFunc 
 
 
-Func GUI_ActualiserGui()
 
-EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Demande une saisie utilisateur pour le delais d'attente entre chaque clic de l'utilisateur 
+    @param $NomAp nom du script 
+    @return La valeur valide du delais , 0 si l'utilisateur souhaite Annuler l'enregistrement de son clic
 #ce 
 Func GUI_DemanderDelais($NomAp) ; En cours de modificaton
     Local $EntreeValide = False
@@ -209,9 +209,9 @@ Func GUI_DemanderDelais($NomAp) ; En cours de modificaton
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Fonction Pour capter les pression de l'utilisateur sur la Touche D du clavier 
+    @param aucun argument
+    @return aucune valeur 
 #ce 
 Func GUI_D_presse()
     If $GUI_D_Touch = 0 Then
@@ -222,9 +222,9 @@ Func GUI_D_presse()
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Fonction Pour capter les pression de l'utilisateur sur la Touche C du clavier 
+    @param aucun argument
+    @return aucune valeur 
 #ce 
 Func GUI_C_presse()
     If $GUI_C_Touch = 0 Then
@@ -235,9 +235,9 @@ Func GUI_C_presse()
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Fonction Pour capter les pression de l'utilisateur sur la Touche F du clavier 
+    @param aucun argument
+    @return aucune valeur 
 #ce 
 Func GUI_F_presse()
     If $GUI_F_Touch = 0 Then
@@ -248,9 +248,9 @@ Func GUI_F_presse()
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Active les raccourcis clavier pour les Touches D ,F et C 
+    @param aucun argument 
+    @return aucune valeur 
 #ce 
 Func GUI_ActiverTouches() 
      HotKeySet("d" , "GUI_D_presse")
@@ -259,16 +259,22 @@ Func GUI_ActiverTouches()
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
-#ce 
+    @brief Desactive les raccourcis clavier pour les Touches D ,F et C 
+    @param aucun argument 
+    @return aucune valeur 
+#ce
 Func GUI_DesactiverTouches() 
     HotKeySet("d")
     HotKeySet("f")
     HotKeySet("c")
 EndFunc
 
+#cs 
+    @brief Demande une saisie utilisateur Pour le nom du fichier .ml qui contiendra toute 
+    les instructions de clic
+    @param $nomAp Le nom du script 
+    @return l'handle du fichier nouvellement crée , 0 si une erreur est survenue 
+#ce 
 Func GUI_DemanderNomFichier($nomAp) 
     $EntreeValide = 0
     $Entree = ""
@@ -305,6 +311,11 @@ Func GUI_DemanderNomFichier($nomAp)
     Return $Fichier 
 EndFunc
 
+#cs 
+    @brief Demande une saisie utilisateur Pour la saisie du nombre d'itérations de suite d'instructions de clics 
+    @param $nomAp Le nom du script 
+    @return La valeur d'itération valide , 0 si l'utilisateur veut anuler la saisie 
+#ce 
 Func GUI_DemanderNbIterations($nomAp)
     Local $EntreeValide = 0 
     Local $NbIteration = 0 

@@ -12,19 +12,28 @@ AutoItSetOption("MouseCoordMode" , 2)
 Main()
 
 Func Main()
+    Local $NomScript = "Mouse Recorder"
+    ;/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     $FocusFenetre = 0
+    
     Local $VerifQuit
-    Local $NomProg = GUI_DemanderNomAp("Debug")
+    
+    Local $NomProg = GUI_DemanderNomAp($NomScript)
+    
     PROG_VerifMsgQuit($NomProg)
-    Local $NomFenetre = GUI_DemanderNomFenetre("Debug")
+    
+    Local $NomFenetre = GUI_DemanderNomFenetre($NomScript)
+    
     PROG_VerifMsgQuit($NomProg)
+    
     GUI_IsolerFenetre()
 
-    #cs
-    $VerifQuit = PROG_LancerProgramme($NomProg , $NomFenetre , "Dbug")
+    $VerifQuit = PROG_LancerProgramme($NomProg , $NomFenetre , "")
     PROG_VerifMsgQuit($VerifQuit)
-    #ce
+
+    ;/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     GUI_PlacerBoutons($GUI_TailleFenetre , $GUI_Boutons)
     GUI_ColorerBoutons($GUI_Boutons , $GUI_Fenetre)
 
@@ -51,10 +60,10 @@ Func Main()
         Local $RetourSecModif = SEC_ModficationTableauInstructions($FR_TableauInsructions , $GUI_Boutons)        
         Local $RetourSecENS = 0
         If $RetourSecModif = 1 Then 
-            MsgBox(0 , "DEBUG" , "Enregistrement")
+            ; MsgBox(0 , "DEBUG" , "Enregistrement")
             $RetourSecENS = SEC_EnregistrementDansFichier($FR_TableauInsructions , $NomProg)
             If $RetourSecENS = 0 Then 
-                
+
             EndIf
             $RetourSecModif = 0
         EndIf

@@ -3,6 +3,13 @@
 #include "RecordMouse.au3"
 #include "FileRecord.au3"
 
+#cs 
+    @brief Sous Programme dédiée à l'enregistrement des clics de la souris et des actions glisser déposer 
+    de l'tilisateur
+    @param $NomFenetre Le Nom de la Fenetre où les actions sont enregistrées 
+    @param $NomFenetre $TableauInstructions Le tableau où sera stocké l'action de l'utilisateur 
+    @return Aucune Valeur 
+#ce 
 Func SEC_EnregistreMentClics($NomFenetre , ByRef $TableauInstructions)
     Select 
 
@@ -36,6 +43,13 @@ Func SEC_EnregistreMentClics($NomFenetre , ByRef $TableauInstructions)
         EndSelect
 Endfunc 
 
+#cs 
+    @brief Sous Programme dédié à la modification d'un tableau d'instructions 
+    @note des actions tel que le suppression de l'instruction précédente , de la rénitialisation du tableau 
+    @param $TableauInstructions Le tableau sur lequel les modifications seront efféctuées 
+    @param $Boutons Tableau qui contient les contrôles de la fenêtre du script
+    @return 1 Si l'utilisateur souhaite enregistre sa suite d'actions , 0 dans les cas contraires
+#ce 
 Func SEC_ModficationTableauInstructions(Byref $TableauInstructions , Const ByRef $Boutons) 
     Local $CtrlEvent = GUIGetMsg(1)
         Select 
@@ -53,6 +67,12 @@ Func SEC_ModficationTableauInstructions(Byref $TableauInstructions , Const ByRef
     Return 0
 EndFunc
 
+#cs 
+    @brief Sous Programmes dédié las sauvegarde des actions dans un fichir d'extension .ml 
+    @param $TableauInstructions Le tableau d'instruction qui sera enregistré dans le fichier .ml
+    @param $NomProg Le nom du programme choissi par l'utilisateur au lancement du script 
+    @return 1 si L'utilisateur veut continuer à utiliser le script , 0 si il veut y mettre fin
+#ce 
 Func SEC_EnregistrementDansFichier(Byref $TableauInstructions , $NomProg)
     $NbIteration = GUI_DemanderNbIterations("Sauvegarde")
     If $NbIteration = 0 Then 

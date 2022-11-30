@@ -15,9 +15,11 @@ Func PROG_VerifMsgQuit($retour)
 Endfunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Lance Le Programme spécifié par l'utilisateur et une fenêtre également 
+    @param $NomProg Le nom du programme à lancer 
+    @parm $NomFenetre Le nom de la fenetre à lancer et qui aura le focus
+    @nomP Nom du script 
+    @return L'identifiant du processus lancé
 #ce 
 Func PROG_LancerProgramme($NomProg , $NomFenetre , $nomP)
     

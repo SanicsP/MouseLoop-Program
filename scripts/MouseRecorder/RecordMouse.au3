@@ -6,25 +6,13 @@ Global $ENS_PosDrag
 Global $ENS_PosDrop
 Global $ENS_Drag = 0
 
-#cs 
-    @brief
-    @param 
-    @return 
-#ce 
-Func ENS_AnnulerDerniereAction(ByRef $Tab)
-    _ArrayPop($Tab)
-    If @error = 3 Then
-        MsgBox(0 , "retour" , "le tableau est vide") 
-        Return 1
-    EndIf
-EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Enregistre la position de la souris relative à la zone cliente de la fenêtre 
+    @param $NomFenetre Nom de la fenêtre donné par l'utilisateur afin de vérifier le focus 
+    @return Retourne L'instruction du clic , 0 si l'utilisateur souhaite annuler l'action 
 #ce 
-Func ENS_EnregistrerPosSouris($NomFenetre) ; en cours de modifications 
+Func ENS_EnregistrerPosSouris($NomFenetre) 
     Local $pos = MouseGetPos()
         
     Local $delais = GUI_DemanderDelais("Souris")
@@ -37,7 +25,7 @@ Func ENS_EnregistrerPosSouris($NomFenetre) ; en cours de modifications
     
     Local $instruction = 1 & " " & $pos[0] & " " & $pos[1] & " " & $delais
     
-    MsgBox(0 , "Instruction" , "voici l'instruction : " & $instruction)
+    ;MsgBox(0 , "Instruction" , "voici l'instruction : " & $instruction)
     
     WinActivate($NomFenetre)
     GUI_C_presse()
@@ -47,9 +35,9 @@ Func ENS_EnregistrerPosSouris($NomFenetre) ; en cours de modifications
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Enregistre le point de départ du l'action glisser déposer à enregistrer 
+    @param Aucun argument 
+    @return Aucune valeur 
 #ce 
 Func ENS_ActiverDrag() ; S'enclenche lorsque l'utilisateur appui sur D
 
@@ -65,9 +53,9 @@ Func ENS_ActiverDrag() ; S'enclenche lorsque l'utilisateur appui sur D
 EndFunc
 
 #cs 
-    @brief
-    @param 
-    @return 
+    @brief Anregistre la position finale du glisser déposer 
+    @param aucun argument 
+    @return une cahîne d'instruction 
 #ce 
 Func ENS_ActiverDrop() ;; S'enclenche lorsque l'utilisateur appui sur F
     If $ENS_Drag = 1 Then
