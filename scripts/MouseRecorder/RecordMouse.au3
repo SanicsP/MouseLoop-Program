@@ -2,6 +2,10 @@
 #include <Array.au3>
 #include "Gui.au3"
 
+Global $ENS_PosDrag
+Global $ENS_PosDrop
+Global $ENS_Drag = 0
+Global $ENS_RetourDragDrop 
 
 Func ENS_AnnulerDerniereAction(ByRef $Tab)
     _ArrayPop($Tab)
@@ -14,8 +18,8 @@ EndFunc
 
 Func ENS_EnregistrerPosSouris($NomFenetre) ; en cours de modifications 
 
-    Local $pos[2] = MouseGetPos()
-
+    Local $pos = MouseGetPos()
+        
     Local $delais = GUI_DemanderDelais("Souris")
     
     If $delais = 0 Then 
@@ -27,5 +31,41 @@ Func ENS_EnregistrerPosSouris($NomFenetre) ; en cours de modifications
     MsgBox(0 , "Instruction" , "voici l'instruction : " & $instruction)
     
     WinActivate($NomFenetre)
-    Return 1
+    GUI_C_presse()
+    Return $instruction
+
 EndFunc
+
+
+Func ENS_ActiverDrag() ; S'enclenche lorsque l'utilisateur appui sur D
+    
+    If $ENS_Drag = 0 Then
+        $ENS_Drag = 1
+        $ENS_PosDrag = MouseGetPos()
+        MsgBox(0 , "DEBUG" , "DRAG")
+    Else 
+        MsgBox(0 , "DEBUG" , "Vous avez déjà drag")
+        
+    EndIf
+    GUI_D_presse()
+EndFunc
+
+Func ENS_ActiverDrop() ;; S'enclenche lorsque l'utilisateur appui sur F
+    
+    If $ENS_Drag = 1 Then
+        $ENS_Drag = 0
+        $ENS_PosDrop = MouseGetPos()
+        MsgBox(0 , "DEBUG" , "DROP")
+
+        $delais = GUI_DemanderDelais("Delais")
+        
+        $ENS_RetourDragDrop = 2 & " " & $ENS_PosDrag[0] & " " & $ENS_PosDrag[1] & " " & $ENS_PosDrop[0] & " " & $ENS_PosDrop[1] & " " & $delais
+        
+        MsgBox(0 , "DEBUG" , "Votre DragDrop : " & $ENS_RetourDragDrop)
+    Else
+        MsgBox(0 , "DEBUG" , "Vous n'avez pas Drag ! ")
+    EndIf
+    GUI_F_presse()
+
+EndFunc
+

@@ -6,6 +6,7 @@
 
 AutoItSetOption("MouseCoordMode" , 2)
 
+
 Main()
 
 Func Main()
@@ -25,6 +26,10 @@ Func Main()
     GUI_ColorerBoutons($GUI_Boutons , $GUI_Fenetre)
 
     GUISetState(@SW_SHOW , $GUI_Fenetre)
+   
+
+    GUI_ActiverTouches()
+
     While True
     ;Actualiser la GUI 
 
@@ -34,7 +39,21 @@ Func Main()
         EndIf
         
         $FocusFenetre = VERIF_verifFenetreActive($NomFenetre)
-        $VerifQuit = ENS_EnregistrerPosSouris($NomFenetre)
+        #cs
+            //////////////////////////////////////////////////////////////////////////
+            Gestion des évenneements utilisateur  
+            ////////////////////////////////////////////////////////////////////////////
+        #ce
+
+        Select 
+            case $GUI_C_Touch = 1  
+                $VerifQuit = ENS_EnregistrerPosSouris($NomFenetre)
+            case $GUI_D_Touch = 1
+                ENS_ActiverDrag()
+            case $GUI_F_Touch = 1
+                ENS_ActiverDrop()
+        EndSelect
+
         PROG_VerifMsgQuit($VerifQuit)
     WEnd
 

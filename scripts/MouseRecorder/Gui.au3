@@ -12,6 +12,11 @@ Global $GUI_Fenetre = GUICreate($GUI_NonFenetre , $GUI_TailleFenetre[0] , $GUI_T
 ;boutons
 Global $GUI_Boutons[7]
 Global $GUI_TailleBoutons[2] = [50 , 50]
+;Accélérateur 
+$GUI_D_Touch = 0
+$GUI_C_Touch = 0
+$GUI_F_Touch = 0
+
 
 #cs ##################################################################################################################
     fonctions     
@@ -164,4 +169,40 @@ Func GUI_DemanderDelais($NomAp) ; En cours de modificaton
     WEnd
 
     Return $delais
+EndFunc
+
+Func GUI_D_presse()
+    If $GUI_D_Touch = 0 Then
+        $GUI_D_Touch = 1
+    Else
+        $GUI_D_Touch = 0 
+    EndIf
+EndFunc
+
+Func GUI_C_presse()
+    If $GUI_C_Touch = 0 Then
+        $GUI_C_Touch = 1
+    Else
+        $GUI_C_Touch = 0 
+    EndIf
+EndFunc
+
+Func GUI_F_presse()
+    If $GUI_F_Touch = 0 Then
+        $GUI_F_Touch = 1
+    Else
+        $GUI_F_Touch = 0 
+    EndIf
+EndFunc
+
+Func GUI_ActiverTouches() 
+     HotKeySet("d" , "GUI_D_presse")
+    HotKeySet("f" , "GUI_F_presse")
+    HotKeySet("c" , "GUI_C_presse")
+EndFunc
+
+Func GUI_DesactiverTouches() 
+    HotKeySet("d")
+    HotKeySet("f")
+    HotKeySet("c")
 EndFunc
